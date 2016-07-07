@@ -24,7 +24,7 @@ create table admin
 	passwd char(40) not null,
 	email char(100) not null,
 	url char(255)
-)
+);
 
 grant select, insert, update, delete
 on guestbook.*
