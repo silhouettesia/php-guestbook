@@ -46,16 +46,16 @@ if (isset($_POST['postid'])) {
 
 function deletePost($conn, $postid)
 {
-	$conn->query("BEGIN");
+	$conn->autocommit(FALSE);
 	$query1 = "delete from header where postid = ".$postid ;
 	$query2 = "delete from body where postid = ".$postid ;
 	$result1 = $conn->query($query1);
 	$result2 = $conn->query($query2);
-	if (!$result1 && !$result2) {
-		$conn->query("ROLLBACK");
+	if (!$result1 || !$result2) {
+		$conn->rollback();
 		echo "<p class=\"err\">Oops, delete failed.</p>";
 	} else {
-		$conn->query("COMMIT");
+		$conn->commit();
 		echo "<p class=\"err\">message($postid) delete.<br></p>";
 	}
 }
