@@ -1,7 +1,7 @@
 <?php
 
 function db_connect() {
-   @ $result = new mysqli('localhost', 'gbadmin', '12345', 'guestbook');
+   @ $result = new mysqli('localhost', 'root', 'password', 'guestbook');
    if (mysqli_connect_errno()) {
       return false;
    }
